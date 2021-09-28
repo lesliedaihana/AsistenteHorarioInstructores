@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from asistenteHorarios.models import Instructores, Contratacion, Ambientes
+from asistenteHorarios.models import Instructores, Contratacion
 import csv, io
 from django.contrib import messages
 
@@ -7,13 +7,13 @@ from django.contrib import messages
 
 def inBD(request):
     template = "CargarBD.html"
-    data = Ambientes.objects.all()
-    prompt = {
+    #data = Ambientes.objects.all()
+    """prompt = {
         'order': 'Order of the CSV should be name, email, address, phone, profile',
         'profiles': data    
-              }
+            }"""
     if request.method == "GET":
-        return render(request, template, prompt)
+        return render(request, template)
     ctx = {}
     csv_file = request.FILES['file']
     if not csv_file.name.endswith('.csv'):
@@ -22,16 +22,15 @@ def inBD(request):
     io_string = io.StringIO(data_set)
     next(io_string)
     for column in csv.reader(io_string, delimiter=',', quotechar="|"):
-        created = Ambientes.objects.update_or_create(
-        id_Ambiente = column[0],
-        Descripcion_Infraestructura = column[1],
-        Capacidad = column[2],
-        TipoDeAmbiente = column[3]
+        created = Instructores.objects.update_or_create(
+        Nombre = column[0],
+        Apellido = column[1],
+        NumeroDocumento = column[2],
         )
-        # created1 = Contratacion.objects.update_or_create(
-        # Fecha_Inicio = column[3],
-        # Fecha_Fin = column[4],
-        # Supervisora = column[5]
-        # )
+        created1 = Contratacion.objects.update_or_create(
+        Fecha_Inicio = column[3],
+        Fecha_Fin = column[4],
+        Supervisora = column[5]
+        )
     
-    return render(request, template, ctx)
+    return render(request, template) 

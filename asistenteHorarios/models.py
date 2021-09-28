@@ -3,14 +3,14 @@ from django.db import models
 # Create your models here.
 
 class Catalogo_Perfiles(models.Model):
-    id_Perfiles = models.IntegerField()
+    #id_Perfiles = models.IntegerField()
     Perfil = models.CharField(max_length=30)
 
 class Catalogo_TipoDocumento(models.Model):
-    id_TipoDocumento = models.IntegerField()
+    #id_TipoDocumento = models.IntegerField()
     TipoDocumento = models.CharField(max_length=30)
 
-class Ambientes(models.Model):
+""" class Ambientes(models.Model):
     id_Ambiente = models.IntegerField()
     Descripcion_Infraestructura = models.CharField(max_length=50)
     Capacidad = models.IntegerField()
@@ -38,25 +38,25 @@ class Programas_de_Formacion(models.Model):
 class Coordinaciones(models.Model):
     id_Coordinacion = models.IntegerField()
     Coordinacion = models.CharField(max_length=30)
-    id_Ambiente = models.ForeignKey(Ambientes, on_delete=models.CASCADE)
+    id_Ambiente = models.ForeignKey(Ambientes, on_delete=models.CASCADE) """
 
 class Instructores(models.Model):
-    id_Instructor = models.IntegerField()
+    #id_Instructor = models.IntegerField()
     NumeroDocumento = models.CharField(max_length=20)
-    id_TipoDocumento = models.ForeignKey(Catalogo_TipoDocumento, on_delete=models.CASCADE)
+    id_TipoDocumento = models.ForeignKey(Catalogo_TipoDocumento, null=True, on_delete=models.CASCADE)
     Nombre = models.CharField(max_length=50)
     Apellido = models.CharField(max_length=50)
-    id_Perfiles = models.ForeignKey(Catalogo_Perfiles, on_delete=models.CASCADE)
+    id_Perfiles = models.ForeignKey(Catalogo_Perfiles, null=True, on_delete=models.CASCADE)
 
 class Contratacion(models.Model):
-    id_Contratacion = models.IntegerField()
-    Fecha_Inicio = models.DateField()
-    Fecha_Fin = models.DateField()
+    #id_Contratacion = models.IntegerField()
+    Fecha_Inicio = models.CharField(max_length=20)
+    Fecha_Fin = models.CharField(max_length=20)
     Supervisora = models.CharField(max_length=100)
-    id_Instructor = models.ForeignKey(Instructores, on_delete=models.CASCADE)
-    id_Coordinacion = models.ForeignKey(Coordinaciones, on_delete=models.CASCADE)
+    id_Instructor = models.ForeignKey(Instructores, null=True, on_delete=models.CASCADE)
+    #id_Coordinacion = models.ForeignKey(Coordinaciones, on_delete=models.CASCADE)
 
-class Diseno_Curricular(models.Model):
+""" class Diseno_Curricular(models.Model):
     id_Diseno_Curricular = models.IntegerField()
     eventoDi = models.CharField(max_length=180)
     id_Instructor = models.ForeignKey(Instructores, on_delete=models.CASCADE)
@@ -67,4 +67,4 @@ class Horario_Instructor(models.Model):
     Fecha_Inicio = models.DateField()
     Fecha_Fin = models.DateField()
     Evento = models.CharField(max_length=50)
-    LugarFormacion = models.CharField(max_length=40)
+    LugarFormacion = models.CharField(max_length=40) """
