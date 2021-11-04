@@ -50,8 +50,8 @@ class Instructores(models.Model):
 
 class Contratacion(models.Model):
     #id_Contratacion = models.IntegerField()
-    Fecha_Inicio = models.CharField(max_length=20)
-    Fecha_Fin = models.CharField(max_length=20)
+    Fecha_Inicio = models.CharField(max_length=20)  # hay que corregir el tipo de dato a "DateField"
+    Fecha_Fin = models.CharField(max_length=20) 
     Supervisora = models.CharField(max_length=100)
     id_Instructor = models.ForeignKey(Instructores, null=True, on_delete=models.CASCADE)
     #id_Coordinacion = models.ForeignKey(Coordinaciones, on_delete=models.CASCADE)
@@ -59,12 +59,12 @@ class Contratacion(models.Model):
 """ class Diseno_Curricular(models.Model):
     id_Diseno_Curricular = models.IntegerField()
     eventoDi = models.CharField(max_length=180)
-    id_Instructor = models.ForeignKey(Instructores, on_delete=models.CASCADE)
+    id_Instructor = models.ForeignKey(Instructores, on_delete=models.CASCADE)"""
 
 class Horario_Instructor(models.Model):
-    id_Horario_Instructor = models.IntegerField()
+    #id_Horario_Instructor = models.IntegerField()
     id_Instructor = models.ForeignKey(Instructores, on_delete=models.CASCADE)
     Fecha_Inicio = models.DateField()
     Fecha_Fin = models.DateField()
-    Evento = models.CharField(max_length=50)
-    LugarFormacion = models.CharField(max_length=40) """
+    Evento = models.TextField(max_length=500, help_text="Ingrese el evento: Competencia + Resultado + activiad de proyecto")
+    LugarFormacion = models.CharField(max_length=50)
