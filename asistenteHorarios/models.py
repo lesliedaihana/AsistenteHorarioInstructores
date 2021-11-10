@@ -54,6 +54,7 @@ class Contratacion(models.Model):
     Fecha_Fin = models.DateField() # hay que corregir el tipo de dato a "DateField"
     Supervisora = models.CharField(max_length=100)
     id_Instructor = models.ForeignKey(Instructores, null=True, on_delete=models.CASCADE)
+    horasMensualFormacion = models.IntegerField(null=True)
     #id_Coordinacion = models.ForeignKey(Coordinaciones, on_delete=models.CASCADE)
 
 """ class Diseno_Curricular(models.Model):
