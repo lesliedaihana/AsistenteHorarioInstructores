@@ -16,8 +16,10 @@ Including another URLconf
 from asistenteHorarios.FuncSprint1.CargarBDinicial import inBD
 from django.contrib import admin
 from django.urls import path
+from asistenteHorarios.views import prueba
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', inBD),
+    path('prueba/', prueba)
 ]
