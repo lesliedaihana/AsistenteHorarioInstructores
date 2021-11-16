@@ -8,6 +8,10 @@ def prueba(request):
     instructor = Instructores.objects.filter(id = 6) 
     consultaHorasMensualFormacion = Contratacion.objects.filter(id_Instructor = instructor[0]) 
     HorasMensualFormacion = consultaHorasMensualFormacion[0].horasMensualFormacion
-    PeriodoTiempo = 1             # suponiendo meses el inicio como la fecha de inicio 
-    ctx = {"Mensaje":sena10(instructor)}
+    fechaInicio = datetime(2021,11,1)             # suponiendo meses el inicio como la fecha de inicio
+    fechaFin = datetime(2021,11,30,23) 
+    resultado = sena10(instructor, fechaInicio, fechaFin)
+    durDias = resultado.total_seconds()/(3600*24)
+    durHoras = resultado.total_seconds()/3600
+    ctx = {"Resultado":resultado, "DuracionDias":durDias, "DuracionHoras":durHoras}
     return render(request, 'prueba.html', ctx)

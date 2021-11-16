@@ -9,8 +9,8 @@
 from asistenteHorarios.models import Horario_Instructor, Instructores, Contratacion
 from datetime import datetime, timedelta
 
-def sena10(instructor):
-    consultaHorarioInstructor = Horario_Instructor.objects.filter(id_Instructor = instructor[0])
+def sena10(instructor, fechaInicio, fechaFin):
+    consultaHorarioInstructor = Horario_Instructor.objects.filter(id_Instructor = instructor[0], Fecha_Inicio__gte = fechaInicio).filter(Fecha_Fin__lte = fechaFin)
     dur = timedelta(0)
     for iteracion in consultaHorarioInstructor:
         dur += iteracion.Fecha_Fin - iteracion.Fecha_Inicio
