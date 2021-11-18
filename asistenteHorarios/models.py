@@ -16,17 +16,7 @@ class Catalogo_TipoDocumento(models.Model):
     Descripcion_Infraestructura = models.CharField(max_length=50)
     Capacidad = models.IntegerField()
     TipoDeAmbiente = models.CharField(max_length=50)
-
-class Resultados(models.Model):
-    id_Resultado = models.IntegerField()
-    Resultado = models.CharField(max_length=50)
-    Abordado = models.BooleanField()
-
-class Competencias(models.Model):
-    id_Competencia = models.IntegerField()
-    Horas = models.IntegerField()
-    Competencia = models.CharField(max_length=150)
-    id_Resultado = models.ForeignKey(Resultados, on_delete=models.CASCADE)"""
+"""
 
 class ProgramasFormacion(models.Model):
     NombreProgramaFormacion = models.CharField(max_length=150)
@@ -87,5 +77,11 @@ class Horario_Instructor(models.Model):
     LugarFormacion = models.CharField(max_length=50)
 
 class Competencias(models.Model):
-    competencia = models.TextField(max_length=300)
+    competencia = models.TextField(max_length=400)
     Horas = models.IntegerField()
+    ProgramasFormaciones = models.ManyToManyField(ProgramasFormacion) 
+
+class Resultados(models.Model):
+    Resultado = models.TextField(max_length=300)
+    Abordado = models.BooleanField()
+    Competencia = models.ForeignKey(Competencias, on_delete=models.CASCADE)
