@@ -1,3 +1,4 @@
+from enum import Enum
 from django.db import models
 
 # Create your models here.
@@ -25,16 +26,31 @@ class Competencias(models.Model):
     id_Competencia = models.IntegerField()
     Horas = models.IntegerField()
     Competencia = models.CharField(max_length=150)
-    id_Resultado = models.ForeignKey(Resultados, on_delete=models.CASCADE)
+    id_Resultado = models.ForeignKey(Resultados, on_delete=models.CASCADE)"""
 
-class Programas_de_Formacion(models.Model):
-    id_ProgramaFormacion = models.IntegerField()
-    TipoDePrograma = models.CharField(max_length=50)
+class ProgramasFormacion(models.Model):
+    NombreProgramaFormacion = models.CharField(max_length=150)
+    
+"""
+class jornada(Enum):
+    manana = "MAÑANA"
+    tarde = "TARDE"
+    noche = "NOCHE"
+"""
+
+class FichasCaracterizacion(models.Model):
+    Ficha = models.CharField(max_length=10)
     FechaInicioEtapaLectiva = models.DateField()
     FechaFinEtapaLectiva = models.DateField()
     CantidadAprendices = models.IntegerField()
-    id_Competencia = models.ForeignKey(Competencias, on_delete=models.CASCADE)
+    Jornada = models.CharField(max_length=30)
+    ProgramasFormacion = models.ForeignKey(ProgramasFormacion, on_delete=models.CASCADE)
 
+
+
+
+
+"""
 class Coordinaciones(models.Model):
     id_Coordinacion = models.IntegerField()
     Coordinacion = models.CharField(max_length=30)
@@ -69,3 +85,7 @@ class Horario_Instructor(models.Model):
     Fecha_Fin = models.DateTimeField()
     Evento = models.TextField(max_length=500, help_text="Ingrese el evento: Competencia + Resultado + activiad de proyecto")
     LugarFormacion = models.CharField(max_length=50)
+
+class Competencias(models.Model):
+    competencia = models.TextField(max_length=300)
+    Horas = models.IntegerField()
