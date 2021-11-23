@@ -20,6 +20,8 @@ def sena15():
     FichasActivas = FichasCaracterizacion.objects.filter(FechaFinEtapaLectiva__gte = fechaActual)
     return FichasActivas
 #   1.2. Determinar los RAP's que no estan abordados (consultar la tabla Resultados)
+#   1.3. Los RAP's no abordados deben programarse de acuerdo al orden establecido en la tabla OrdenRAP
+#Competencias.objects.get(id = consultaRapNoAbordados[0].Competencia.id).competencia
 # 2. Revisar que instructor (a) puede atender dicha necesidad
 #   2.1. Obtener la lista de instructores disponibles de acuerdo al perfil, con disponibilidad de horario
 # 3. Hacer la programación

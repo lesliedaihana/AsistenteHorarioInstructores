@@ -28,18 +28,6 @@ class jornada(Enum):
     noche = "NOCHE"
 """
 
-class FichasCaracterizacion(models.Model):
-    Ficha = models.CharField(max_length=10)
-    FechaInicioEtapaLectiva = models.DateField()
-    FechaFinEtapaLectiva = models.DateField()
-    CantidadAprendices = models.IntegerField()
-    Jornada = models.CharField(max_length=30)
-    ProgramasFormacion = models.ForeignKey(ProgramasFormacion, on_delete=models.CASCADE)
-
-
-
-
-
 """
 class Coordinaciones(models.Model):
     id_Coordinacion = models.IntegerField()
@@ -78,6 +66,7 @@ class Horario_Instructor(models.Model):
 
 class Competencias(models.Model):
     competencia = models.TextField(max_length=400)
+    codigoCompetencia = models.CharField(max_length=20, null=True)
     Horas = models.IntegerField()
     ProgramasFormaciones = models.ManyToManyField(ProgramasFormacion) 
 
@@ -85,3 +74,18 @@ class Resultados(models.Model):
     Resultado = models.TextField(max_length=300)
     Abordado = models.BooleanField()
     Competencia = models.ForeignKey(Competencias, on_delete=models.CASCADE)
+
+class FichasCaracterizacion(models.Model):
+    Ficha = models.CharField(max_length=10)
+    FechaInicioEtapaLectiva = models.DateField()
+    FechaFinEtapaLectiva = models.DateField()
+    CantidadAprendices = models.IntegerField()
+    Jornada = models.CharField(max_length=30)
+    ProgramasFormacion = models.ForeignKey(ProgramasFormacion, on_delete=models.CASCADE)
+    Avance = models.ManyToManyField(Resultados)
+    
+
+class OrdenRAP(models.Model):
+    OrdenRap = models.IntegerField()
+    Resultado = models.ManyToManyField(Resultados)
+    Ficha = models.ManyToManyField(FichasCaracterizacion) 
