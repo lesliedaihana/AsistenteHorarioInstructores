@@ -89,3 +89,4 @@ class OrdenRAP(models.Model):
     OrdenRap = models.IntegerField()
     Resultado = models.ManyToManyField(Resultados)
     Ficha = models.ManyToManyField(FichasCaracterizacion) 
+

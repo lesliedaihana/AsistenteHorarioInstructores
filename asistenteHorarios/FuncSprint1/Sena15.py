@@ -11,15 +11,18 @@
 # Salidas:
 #   Eventos en la tabla Horario_Instructores
 from datetime import date, datetime, timedelta
-from asistenteHorarios.models import FichasCaracterizacion
+from asistenteHorarios.models import FichasCaracterizacion, Resultados
 # Algoritmo
 # 1. Determinar las necesidades de formación
 #   1.1. Obtener las fichas activas (son en las que no se ha cumplido su fecha de etapa lectiva)
 def sena15():
     fechaActual = datetime.now().date()
     FichasActivas = FichasCaracterizacion.objects.filter(FechaFinEtapaLectiva__gte = fechaActual)
-    return FichasActivas
+    result = Resultados.objects.all()
+    resp = set(result) - set(FichasActivas.Avance.all())
+    return resp
 #   1.2. Determinar los RAP's que no estan abordados (consultar la tabla Resultados)
+
 #   1.3. Los RAP's no abordados deben programarse de acuerdo al orden establecido en la tabla OrdenRAP
 #Competencias.objects.get(id = consultaRapNoAbordados[0].Competencia.id).competencia
 # 2. Revisar que instructor (a) puede atender dicha necesidad

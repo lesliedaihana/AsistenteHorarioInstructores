@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from asistenteHorarios.FuncSprint1.CargarBDinicial import cargarBDinicial
 from asistenteHorarios.FuncSprint1.Sena10 import sena10
 from asistenteHorarios.FuncSprint1.Sena15 import sena15
 from asistenteHorarios.models import Horario_Instructor, Instructores, Contratacion
@@ -17,3 +18,16 @@ def prueba(request):
     fichasActivas = sena15()
     ctx = {"Resultado":resultado, "DuracionDias":durDias, "DuracionHoras":durHoras, "FichasActivas":fichasActivas}
     return render(request, 'prueba.html', ctx)
+
+def cargarBD(request):
+    if request.method == "POST":
+        try:    
+            csv_file = request.FILES['file']
+            ctX = cargarBDinicial(csv_file)
+            ctx = ctX.tipoFileCsv()
+        except:
+            ctx = 'Debe cargar algún archivo'
+        #ctx.InsertInstContr()
+    else:
+        ctx = 'no se cargo el archivo'
+    return render(request, "CargarBD1.html", {'CTX':ctx}) 

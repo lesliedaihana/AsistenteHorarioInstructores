@@ -1,7 +1,9 @@
+from django.http import request
 from django.shortcuts import render
 from asistenteHorarios.models import Instructores, Contratacion
 import csv, io
 from django.contrib import messages
+from datetime import date, datetime
 
 # Esta función maneja la introducción inicial de datos a la BD
 
@@ -34,3 +36,28 @@ def inBD(request):
         )
     
     return render(request, template) 
+
+class cargarBDinicial:
+
+    def __init__(self, file):
+        self.file = file
+
+    def tipoFileCsv(self):
+        if not self.file.name.endswith('.csv'):
+            mensaje = 'THIS IS NOT A CSV FILE'
+        else:
+            mensaje = 'Este si es un CSV FILE'        
+        return mensaje
+    
+    def InsertInstContr(self):            
+        #data_set = self.file.read().decode('UTF-8')
+        data_set = self.file.read()
+        self.io_string = io.StringIO(data_set)
+        next(self.io_string)
+        for column in csv.reader(self.io_string, delimiter=',', quotechar="|"):
+
+            RegInstructores = Instructores.objects.create(Nombre = column[0],Apellido = column[1],NumeroDocumento = column[2])
+
+            RegContratacion = Contratacion.objects.create(Fecha_Inicio = datetime.strptime(column[3], '%Y-%m-%d'), Fecha_Fin = datetime.strptime(column[4], '%Y-%m-%d'), Supervisora = column[5], id_Instructor = RegInstructores, horasMensualFormacion = column[6])
+
+        return
