@@ -5,6 +5,7 @@ from asistenteHorarios.FuncSprint1.Sena10 import sena10
 from asistenteHorarios.FuncSprint1.Sena15 import sena15
 from asistenteHorarios.models import Horario_Instructor, Instructores, Contratacion
 from datetime import datetime, timedelta
+import io
 
 def prueba(request):
     instructor = Instructores.objects.filter(id = 6) 
@@ -23,11 +24,11 @@ def cargarBD(request):
     if request.method == "POST":
         try:    
             csv_file = request.FILES['file']
-            ctX = cargarBDinicial(csv_file)
+            ctX = cargarBDinicial(io.TextIOWrapper(csv_file))
             ctx = ctX.tipoFileCsv()
         except:
             ctx = 'Debe cargar algún archivo'
-        #ctx.InsertInstContr()
+        ctx1 = ctX.InsertInstContr()
     else:
         ctx = 'no se cargo el archivo'
     return render(request, "CargarBD1.html", {'CTX':ctx}) 
