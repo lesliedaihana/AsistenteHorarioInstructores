@@ -19,7 +19,7 @@ def sena15():
     fechaActual = datetime.now().date()
     FichasActivas = FichasCaracterizacion.objects.filter(FechaFinEtapaLectiva__gte = fechaActual)
     result = Resultados.objects.all()
-    resp = set(result) - set(FichasActivas.Avance.all())
+    resp = set(result) - set(FichasActivas[0].Avance.all())
     return resp
 #   1.2. Determinar los RAP's que no estan abordados (consultar la tabla Resultados)
 

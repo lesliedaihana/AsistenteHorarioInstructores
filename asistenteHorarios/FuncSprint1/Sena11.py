@@ -1,5 +1,6 @@
 # 1. Conseguir horario de cada instructor y Conseguir cuantas horas al mes debe impartir el instructor
 #   Alternativa 1:Consultando la tabla Horario_Instructor "hasta cuando el instructor se queda sin eventos" y la  
+    #eventosOrdenado = sorted(consultaHorario, key=lambda x: x.Fecha_Fin)
 #   Alternativa 2: Conseguir el querySet de la consulta  a la tabla Horario_Instructor, con los parametros de el instructor, el periodo de tiempo y horasMensualFormacion, y 
 #   se analiza cuando termina cada uno de los RAP
 #   "Cada vez que termine un RAP se genera un previsión"

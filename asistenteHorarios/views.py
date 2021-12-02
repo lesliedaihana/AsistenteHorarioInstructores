@@ -27,8 +27,12 @@ def cargarBD(request):
             ctX = cargarBDinicial(io.TextIOWrapper(csv_file))
             ctx = ctX.tipoFileCsv()
         except:
-            ctx = 'Debe cargar algún archivo'
+            ctx = 'Debe cargar el archivo con el formato csv'
         ctx1 = ctX.InsertInstContr()
     else:
         ctx = 'no se cargo el archivo'
     return render(request, "CargarBD1.html", {'CTX':ctx}) 
+
+def resultadosXabordar(request):
+    ctx = sena15()
+    return render(request, 'resultados.html', {'ctx':ctx})
