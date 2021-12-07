@@ -1,6 +1,5 @@
 # 1. Conseguir horario de cada instructor y Conseguir cuantas horas al mes debe impartir el instructor
 #   Alternativa 1:Consultando la tabla Horario_Instructor "hasta cuando el instructor se queda sin eventos" y la  
-    #eventosOrdenado = sorted(consultaHorario, key=lambda x: x.Fecha_Fin)
 #   Alternativa 2: Conseguir el querySet de la consulta  a la tabla Horario_Instructor, con los parametros de el instructor, el periodo de tiempo y horasMensualFormacion, y 
 #   se analiza cuando termina cada uno de los RAP
 #   "Cada vez que termine un RAP se genera un previsión"
@@ -9,3 +8,33 @@
 # -Ver cuantas horas utiliza a diario para una competencia
 # -Realizar funcion que en base a las horas restantes y las horas utilizadas a diario
 # prevea la finalizacion de una competencia
+
+from datetime import date
+from asistenteHorarios.models import Horario_Instructor, Instructores
+
+class sena12:
+    ultima_fecha=date(2021,1,1)
+
+    #def ultimaFecha(self):
+    #   self.ultima_fecha=self.consultahorario()
+   
+    @classmethod
+    def consultahorario(cls):
+        consulta_instructor=Instructores.objects.get(id=6)
+        consulta=Horario_Instructor.objects.filter(id_Instructor=consulta_instructor).order_by("-Fecha_Fin")
+        fecha=consulta[0]
+        cls.ultima_fecha=fecha.Fecha_Fin
+        print("La ultima fecha es: ", fecha.Fecha_Fin)
+        return fecha
+        
+
+    def prueba_imprimir():
+        print("Prueba impresion")
+
+    def consultahorario1():
+        consulta_instructor=Instructores.objects.get(id=6)
+        consulta=Horario_Instructor.objects.filter(id_Instructor=consulta_instructor).order_by("-Fecha_Fin")
+        fecha=consulta[0]
+        print("La ultima fecha es: ", fecha.Fecha_Fin)
+        return fecha
+
