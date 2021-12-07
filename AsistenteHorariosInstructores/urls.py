@@ -16,12 +16,12 @@ Including another URLconf
 from asistenteHorarios.FuncSprint1.CargarBDinicial import inBD
 from django.contrib import admin
 from django.urls import path
-from asistenteHorarios.views import prueba, cargarBD, resultadosXabordar
+from asistenteHorarios.views import mostrar_fechaFin, prueba, cargarBD
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inicio/', inBD),
     path('prueba/', prueba),
     path('inicio1/', cargarBD),
-    path('resXabordar/', resultadosXabordar)
+    path('mostrarfecha/', mostrar_fechaFin),
 ]

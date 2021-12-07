@@ -2,10 +2,17 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from asistenteHorarios.FuncSprint1.CargarBDinicial import cargarBDinicial
 from asistenteHorarios.FuncSprint1.Sena10 import sena10
+from asistenteHorarios.FuncSprint1.Sena11 import sena12
 from asistenteHorarios.FuncSprint1.Sena15 import sena15
 from asistenteHorarios.models import Horario_Instructor, Instructores, Contratacion
 from datetime import datetime, timedelta
 import io
+
+def mostrar_fechaFin(request):
+    sena12.consultahorario()
+    ctx={"Fecha":sena12.ultima_fecha}
+    return render(request, "MostrarFecha.html",ctx)
+
 
 def prueba(request):
     instructor = Instructores.objects.filter(id = 6) 
@@ -27,12 +34,8 @@ def cargarBD(request):
             ctX = cargarBDinicial(io.TextIOWrapper(csv_file))
             ctx = ctX.tipoFileCsv()
         except:
-            ctx = 'Debe cargar el archivo con el formato csv'
+            ctx = 'Debe cargar algún archivo'
         ctx1 = ctX.InsertInstContr()
     else:
         ctx = 'no se cargo el archivo'
     return render(request, "CargarBD1.html", {'CTX':ctx}) 
-
-def resultadosXabordar(request):
-    ctx = sena15()
-    return render(request, 'resultados.html', {'ctx':ctx})
