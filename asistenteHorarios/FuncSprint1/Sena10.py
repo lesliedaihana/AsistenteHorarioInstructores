@@ -24,3 +24,16 @@ def sena10(instructor, fechaInicio, fechaFin):
 # PeriodoTiempo = 1             # suponiendo meses el inicio como la fecha de inicio 
 
 #print(sena10(instructor,PeriodoTiempo,HorasMensualFormacion))
+
+# Función hipotetica para hacer la prueba
+class sena10Prueba:
+    def __init__(self, id):
+        self.id = id
+    #     self.desviacion = desviacion
+
+    def instructor(self):
+        return Instructores.objects.get(id = self)
+
+    def instructorFalla(self):
+        return None
+
