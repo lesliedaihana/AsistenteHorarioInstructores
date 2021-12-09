@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados por abordar</title>
+</head>
+<body>
+    <h1>{{ctx}}</h1>
+    <h1>Se encontaron {{ctx|length}} resultados por abordar</h1>
+    {% if ctx %}
+        <ul>
+        {% for resultado in ctx %} 
+            <li>
+                <p><strong>{{resultado.id}}</strong> <br>{{resultado.Resultado}} <br>{{elemento.Abordado} </p>
+            </li>            
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>La consulta no arrojo resultados</p>
+    {% endif %}
+</body>
+</html>
