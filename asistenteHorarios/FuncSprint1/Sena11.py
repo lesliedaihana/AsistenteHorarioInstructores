@@ -38,3 +38,19 @@ class sena12:
         print("La ultima fecha es: ", fecha.Fecha_Fin)
         return fecha
 
+# lista = list()
+# for fechaFin in listaInstructores:
+#      consulta = Horario_Instructor.objects.filter(id_Instructor = fechaFin).order_by("-Fecha_Fin")     
+#      if consulta:
+#        lista.append(consulta[0].Fecha_Fin)
+#        print(lista)
+
+# PrevisionFechaFin = dict()
+# InstructorInoficioso = list()
+# for fechaFin in listaInstructores
+#         consulta = Horario_Instructor.objects.filter(id_Instructor = fechaFin).order_by("-Fecha_Fin")     
+#         if consulta:
+#             PrevisionFechaFin[fechaFin] = consulta[0].Fecha_Fin
+#         else:
+#             InstructorInoficioso.append(fechaFin)
+# print(PrevisionFechaFin)

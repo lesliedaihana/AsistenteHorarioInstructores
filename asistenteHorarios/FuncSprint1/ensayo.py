@@ -1,5 +1,14 @@
-class Person(object):
-    country = "China"
+class Person:
+    @classmethod
+    def datos(cls,name,age,gender):
+        cls.name = name
+        cls.age = age
+        cls.gender = gender
+
+    country = "Venezuela"
+    name = "Juana"
+    age = int(20)
+    gender = "Femenino"
 
     @classmethod
     def countryinfo(cls):
@@ -10,9 +19,7 @@ class Person(object):
         cls.country = newcountry
         print ('La nacionalidad en este momento es:', cls.country)
 
-    def init(self,name,age,gender):
-        self.name = name
-        self.age = age
-        self.gender = gender
+
+
 
 #if __name__ == '__main__':
