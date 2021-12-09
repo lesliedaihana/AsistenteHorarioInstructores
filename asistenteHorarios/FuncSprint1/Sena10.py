@@ -20,7 +20,7 @@ def sena10(instructor, fechaInicio, fechaFin):
     for iteracion in consultaHorarioInstructor:
         dur += iteracion.Fecha_Fin - iteracion.Fecha_Inicio
     d=dur.total_seconds()/3600
-    r=horasMensualFormacion*p
+    r=horasMensualFormacion*p       # cantidad de horas que debe dar formación el instructor
     r1=timedelta(seconds=r*3600)
     diferencia=d-r
     return dur,diferencia,p
