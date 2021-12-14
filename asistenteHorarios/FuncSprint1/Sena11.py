@@ -12,22 +12,27 @@
 from datetime import date
 from asistenteHorarios.models import Horario_Instructor, Instructores
 
-class sena12:
+class sena11:
     ultima_fecha=date(2021,1,1)
+    PrevisionFechaFin = dict()
+    InstructorInoficioso = list()
 
     #def ultimaFecha(self):
     #   self.ultima_fecha=self.consultahorario()
    
     @classmethod
     def consultahorario(cls):
-        consulta_instructor=Instructores.objects.get(id=6)
-        consulta=Horario_Instructor.objects.filter(id_Instructor=consulta_instructor).order_by("-Fecha_Fin")
-        fecha=consulta[0]
-        cls.ultima_fecha=fecha.Fecha_Fin
-        print("La ultima fecha es: ", fecha.Fecha_Fin)
-        return fecha
+        listaInstructores=Instructores.objects.all()       
         
-
+        for instructor in listaInstructores:
+           consulta = Horario_Instructor.objects.filter(id_Instructor = instructor).order_by("-Fecha_Fin")     
+           if consulta:
+                cls.PrevisionFechaFin[instructor] = consulta[0].Fecha_Fin
+           else:
+               if instructor not in cls.InstructorInoficioso:
+                cls.InstructorInoficioso.append(instructor)
+        return 
+        
     def prueba_imprimir():
         print("Prueba impresion")
 
@@ -37,6 +42,8 @@ class sena12:
         fecha=consulta[0]
         print("La ultima fecha es: ", fecha.Fecha_Fin)
         return fecha
+
+
 
 # lista = list()
 # for fechaFin in listaInstructores:

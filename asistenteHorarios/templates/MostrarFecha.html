@@ -7,6 +7,35 @@
     <title>Mostrar Fecha</title>
 </head>
 <body>
-    <h1>{{Fecha}}</h1>
+    <br><br>
+    <h1>Para los siguientes {{Fecha|length}} instructores su previsión de finalización de carga académica es: </h1>
+    {% if Fecha %}
+        <!-- <p>Esta ingresando al if articulos</p> -->
+        <ul>
+        {% for instructor, fecha in Fecha.items %} 
+            <li>
+                <p>El instructor <strong>{{instructor.Nombre}}</strong> tiene eventos registrados hasta <strong>{{fecha}}</strong></p>
+            </li>            
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>La consulta no arrojo resultados</p>
+    {% endif %}
+
+    
+    {% if inoficioso %}
+    <h1>Los instructores inoficiosos son {{inoficioso|length}} </h1>
+        <ul>
+        {% for instructor in inoficioso %} 
+            <li>
+                <p>El instructor <strong>{{instructor.Nombre}}</strong> {{instructor.id}}</p>
+            </li>            
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>La consulta no arrojo resultados</p>
+    {% endif %}
+    <br>
+    
 </body>
 </html>

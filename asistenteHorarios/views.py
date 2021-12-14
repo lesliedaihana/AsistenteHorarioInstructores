@@ -2,15 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from asistenteHorarios.FuncSprint1.CargarBDinicial import cargarBDinicial
 from asistenteHorarios.FuncSprint1.Sena10 import sena10
-from asistenteHorarios.FuncSprint1.Sena11 import sena12
+from asistenteHorarios.FuncSprint1.Sena11 import sena11
 from asistenteHorarios.FuncSprint1.Sena15 import sena15
 from asistenteHorarios.models import Horario_Instructor, Instructores, Contratacion
 from datetime import datetime, timedelta
 import io
 
 def mostrar_fechaFin(request):
-    sena12.consultahorario()
-    ctx={"Fecha":sena12.ultima_fecha}
+    sena11.consultahorario()
+    ctx={"Fecha":sena11.PrevisionFechaFin, 'inoficioso':sena11.InstructorInoficioso}
     return render(request, "MostrarFecha.html",ctx)
 
 
