@@ -1,5 +1,6 @@
 from enum import Enum
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
 
@@ -88,5 +89,11 @@ class FichasCaracterizacion(models.Model):
 class OrdenRAP(models.Model):
     OrdenRap = models.IntegerField()
     Resultado = models.ManyToManyField(Resultados)
-    Ficha = models.ManyToManyField(FichasCaracterizacion) 
+    #Ficha = models.ManyToManyField(FichasCaracterizacion) 
+    #Ficha = models.ForeignKey(FichasCaracterizacion, on_delete=CASCADE, null=True)
+
+# class auxiliar(models.Model):
+#     ficha = models.ForeignKey(FichasCaracterizacion, on_delete=CASCADE)
+    # ordenRap = models.ForeignKey(OrdenRAP, on_delete=CASCADE)
+    # result = models.ForeignKey(Resultados, on_delete=CASCADE)
 
