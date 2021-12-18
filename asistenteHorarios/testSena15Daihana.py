@@ -4,11 +4,17 @@ from asistenteHorarios.FuncSprint1.Sena15 import sena15Prueba
 
 
 
+#   e) El instructor no debe sobrepasar las 10 horas diarias, ni semanalmente de la cantidad de horas / 4
 
 
 class sena15(TestCase):
+    
+    def setUp(self):
+        self.Pruebas15Fichas=4
+
+
    def testDA(self):
-       self.assertEquals (sena15.durEvento,5)
+       self.assertEquals (sena15.durEvento,10)
        
     
 
