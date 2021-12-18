@@ -10,11 +10,11 @@ from asistenteHorarios.FuncSprint1.Sena15 import sena15Prueba
 class sena15(TestCase):
     
     def setUp(self):
-        self.Pruebas15Fichas=4
+        self.Pruebas15ins=4
 
 
    def testDA(self):
-       self.assertEquals (sena15.durEvento,10)
+       self.assertEquals (sena15.horasDiarias,10)
        
     
 
